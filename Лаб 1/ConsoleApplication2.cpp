@@ -29,8 +29,9 @@ int main() {
         stack[n - 1] = 345; 
 
         auto [found, time] = measure_execution_time(find_in_stack, stack, 345);
-        std::cout <<" " << n << " " << time << std::endl;
+        std::cout <<"Размер: " << n << " Время выполнения: " << time << std::endl;
     }
 
     return 0;
 }
+
