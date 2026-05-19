@@ -1,0 +1,44 @@
+#include "pch.h"
+#include "CppUnitTest.h"
+#include "../ConsoleApplication11/ConsoleApplication11.cpp"
+
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace std;
+namespace UnitTest
+{
+    TEST_CLASS(UnitTest)
+    {
+    public:
+        TEST_METHOD(TestRadixSort)
+        {
+            vector<int> arr = { 170,45,75,90,802,24,2,66 };
+            radixSort(arr);
+            vector<int> expected = { 2,24,45,66,75,90,170,802 };
+            for (int i = 0; i < arr.size(); i++)
+            {
+                Assert::AreEqual(expected[i], arr[i]);
+            }
+        }
+        TEST_METHOD(TestQuickSort)
+        {
+            vector<int> arr = { 34,7,23,32,5,62,1,15 };
+            quickSort(arr, 0, arr.size() - 1);
+            vector<int> expected = { 1,5,7,15,23,32,34,62 };
+            for (int i = 0; i < arr.size(); i++)
+            {
+                Assert::AreEqual(expected[i], arr[i]);
+            }
+        }
+        TEST_METHOD(TestShellSort)
+        {
+            vector<int> arr = { 99,12,54,3,87,29,41,8 };
+            shellSort(arr);
+            vector<int> expected = { 3,8,12,29,41,54,87,99 };
+            for (int i = 0; i < arr.size(); i++)
+            {
+                Assert::AreEqual(expected[i], arr[i]);
+            }
+        };
+
+    };
+};
