@@ -1,0 +1,67 @@
+//radixSort
+#include <iostream>
+#include <vector>
+using namespace std;
+vector<int> mergeTrashh(vector<vector<int>>trashh) {
+	vector<int>mergedMassive;
+	int n = trashh.size();
+	for (int i = 0; i < n; i++) {
+		mergedMassive.insert(mergedMassive.end(), trashh[i].begin(), trashh[i].end());
+
+	}
+	return mergedMassive;
+}
+void sortByDigit(vector<int>& massive, int digit) {
+	vector<vector<int>>trashh(10);
+	int n = massive.size();
+	for (int i = 0; i < n; i++) {
+		int index_trashh = (massive[i] / digit) % 10;
+		trashh[index_trashh].push_back(massive[i]);
+	}
+	massive = mergeTrashh(trashh);
+}
+void radixSort(vector<int>& massive) {
+	int max_number = *max_element(massive.begin(), massive.end());
+	int digit = 1;
+	while (max_number / digit > 0) {
+		sortByDigit(massive, digit);
+		digit = digit * 10;
+	}
+}
+//QuickSort
+int partition(vector<int>& massive, int low, int high) {
+	int pivot = massive[high];
+	int i = (low - 1);
+	for (int j = low; j <= high - 1; j++) {
+		if (massive[j] < pivot) {
+			i++;
+			swap(massive[i], massive[j]);
+		}
+	}
+	swap(massive[i + 1], massive[high]);
+	return (i + 1);
+}
+void quickSort(vector<int>& massive, int low, int high) {
+	if (low < high) {
+		int pi = partition(massive, low, high);
+		quickSort(massive, low, pi - 1);
+		quickSort(massive, pi + 1, high);
+	}
+}
+//shellSort
+void shellSort(vector<int>& arr) {
+	int n = arr.size();
+	int gap = n / 2;
+	while (gap > 0) {
+		for (int i = gap; i < n; i++) {
+			int temp = arr[i];
+			int j = i;
+			while (j >= gap && arr[j - gap] > temp) {
+				arr[j] = arr[j - gap];
+				j = j - gap;
+			}
+			arr[j] = temp;
+		}
+		gap = gap / 2;
+	}
+}
