@@ -237,6 +237,8 @@ def visualize_only_path(path, figsize=(10, 10)):
 if __name__ == "__main__":
     # 1. Загрузка данных
     nodes, edges = read_graphml("oslo_road_network.graphml")
+    print(f"Количество вершин: {len(nodes)}")
+    print(f"Количество рёбер: {len(edges)}")
     
     # 2. Задаём названия улиц
     start_street_query = "Essendrops gate" 
