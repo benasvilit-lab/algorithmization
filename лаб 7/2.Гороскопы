@@ -6,7 +6,6 @@ b = list(map(int, input().split()))
 # Размеры матрицы: (n + 1) на (m + 1), изначально заполнена нулями
 matrix = [[0] * (m + 1) for _ in range(n + 1)]
 
-# Заполняем матрицу длинами НОП
 for i in range(1, n + 1):
     for j in range(1, m + 1):
         if a[i - 1] == b[j - 1]:
@@ -23,7 +22,6 @@ i, j = n, m
 while i > 0 and j > 0:
     if a[i - 1] == b[j - 1]:
         # Если элементы равны, значит, они входят в НОП.
-        # Сохраняем индексы (нумерация с 1)
         index_a.append(i)
         index_b.append(j)
         i -= 1
@@ -33,11 +31,9 @@ while i > 0 and j > 0:
     else:
         j -= 1
 
-# Так как мы шли с конца, списки индексов нужно развернуть
 index_a.reverse()
 index_b.reverse()
 
-# Выводим результат
 print(len_nop)
 print(*index_a)
 print(*index_b)
