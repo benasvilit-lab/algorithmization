@@ -1,0 +1,30 @@
+# Метод поиска с возвратом
+def backtrack(index, current_sum, target, weights, current_team):
+    if current_sum == target:
+        return True
+    if current_sum > target or index == len(weights):
+        return False
+
+    current_team.append(weights[index])  
+
+    if backtrack(index + 1, current_sum + weights[index], target, weights, current_team):
+        return True  
+
+    current_team.pop()  
+
+    if backtrack(index + 1, current_sum, target, weights, current_team):
+        return True
+    return False
+
+n, k = map(int, input().split())
+
+
+weights = list(map(int, input().split()))
+
+current_team = [] 
+
+if backtrack(0, 0, k, weights, current_team):
+    print("YES")
+else:
+    print("NO")
+
