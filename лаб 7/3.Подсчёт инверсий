@@ -1,3 +1,4 @@
+#Декомпозиция
 def merge_and_count(arr, temp_arr, left, right):
     count = 0
     if left < right:
