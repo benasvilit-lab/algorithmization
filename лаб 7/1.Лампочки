@@ -1,0 +1,44 @@
+# Деревья
+from collections import deque
+class Node:
+    def __init__(self, value, right=None, left=None):
+        self.value = value
+        self.right = right
+        self.left = left
+    def insert(self, new_value):
+        if self.value is None:
+            self.value = new_value
+            return
+        queue = deque([self])
+        while queue:
+            current = queue.popleft()
+            if current.left is None:
+                current.left = Node(new_value)
+                return
+            else:
+                queue.append(current.left)
+            if current.right is None:
+                current.right = Node(new_value)
+                return
+            else:
+                queue.append(current.right)
+def find_max(root:Node)->int:
+    if root is None:
+        return float('-inf')
+    return max(root.value, find_max(root.left), find_max(root.right))
+
+# создаем корень
+root = Node(1)
+
+# перечисляем остальные лампочки по очереди сверху вниз, слева направо
+lamp_brightness_levels = [3, 5, 8, 10, 2, 6, 14, 15, 3, 0, 1]
+
+for brightness in lamp_brightness_levels:
+    root.insert(brightness)
+
+print("Самая яркая лампочка:", find_max(root))
+
+
+
+
+
